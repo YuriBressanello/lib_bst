@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+//smergh
+
 struct Node {
     int data;
     int weight {1};
