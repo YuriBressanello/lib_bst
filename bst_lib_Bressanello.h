@@ -1,8 +1,6 @@
 #include <iostream>
 using namespace std;
 
-//smergh
-
 struct Node {
     int data;
     int weight {1};
@@ -285,3 +283,5 @@ Node *it_cancel(Node *nodo, int k){
     return nodo;
 
 }
+
+bool is_bst(Node *r);
