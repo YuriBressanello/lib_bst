@@ -128,4 +128,27 @@ class Node{
         void postOrder();
         Node *deleteNode(int k);
         bool isBst();
+        friend ostream &operator<<(ostream &os, Node *root){
+            os << "Il dato del nodo: " << root->data << endl;
+            os << "Il peso del nodo: " << root->weight << endl;
+            if(root->lchild==NULL){
+                os << "Il figlio sinistro e' una foglia" << endl;
+            } else {
+                os << "Il figlio sinistro: " << root->lchild->data << endl;
+            }
+            if(root->rchild==NULL){
+                os << "Il figlio destro e' una foglia" << endl;
+            } else {
+                os << "Il figlio destro: " << root->rchild->data << endl;
+            }
+            return os;
+        }
+        friend istream &operator>>(istream &is, Node *root){
+            cout << "Inserisci il valore del nodo: ";
+            is >> root->data;
+            root->lchild = nullptr;
+            root->rchild = nullptr;
+            root->weight = 1;
+            return is;
+        }
 };
