@@ -128,7 +128,7 @@ class Node{
         void postOrder();
         Node *deleteNode(int k);
         bool isBst();
-        friend ostream &operator<<(ostream &os, Node *root){
+        friend ostream &operator<<(ostream &os, const Node *root){
             os << "Il dato del nodo: " << root->data << endl;
             os << "Il peso del nodo: " << root->weight << endl;
             if(root->lchild==NULL){
