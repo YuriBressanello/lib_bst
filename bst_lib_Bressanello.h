@@ -194,6 +194,32 @@ class Node{
 
         }
         bool isBst(){
-            
+            Node *root = this;
+            bool check {true};
+            do{
+                if(root->lchild==nullptr && root->rchild==nullptr){
+                    return true;
+                }
+                if(root->lchild==nullptr){
+                    if(root->data>root->rchild->data){
+                        return false;
+                    } else {
+                        root = root->rchild;
+                    }
+                } else if(root->rchild==nullptr){
+                    if(root->data<root->lchild->data){
+                        return false;
+                    } else {
+                        root = root->lchild;
+                    }
+                } else if(root->data<root->lchild->data || root->data>root->rchild->data){
+                    return false;
+                } else {
+                    root = root->lchild; 
+                }
+            }while(check);
+
+            return true;
+
         }
 };
