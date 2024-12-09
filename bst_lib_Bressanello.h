@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Node{
@@ -118,14 +119,81 @@ class Node{
             }
             return this;
         }
-        void preOrder();
+        void preOrder(){
+            if(this==NULL) return;
+            cout << this->data << " ";
+            this->lchild->inOrder();
+            this->rchild->inOrder();
+        }
         void inOrder(){
             if(this==NULL) return;
             this->lchild->inOrder();
             cout << this->data << " ";
             this->rchild->inOrder();
         }
-        void postOrder();
-        Node *deleteNode(int k);
-        bool isBst();
+        void postOrder(){
+            if(this==NULL) return;
+            this->lchild->postOrder();
+            this->rchild->postOrder();
+            cout << this->data << " ";
+        }
+        Node *deleteNode(int k){
+            Node *father = this;
+            Node *current = this;
+            Node *tmp = this;
+            bool check {true};
+            do{
+                if(current==NULL){
+                    cout << "Node not found!" << endl;
+                    check = false;
+                }
+                if(current->data==k){
+                    if(current->lchild==nullptr && current->rchild==nullptr){
+                        if(current->data==father->lchild->data){
+                            delete current;
+                            current = nullptr;
+                            father->lchild = nullptr;
+                            check = false;
+                            return father;
+                        } else {
+                            delete current;
+                            current = nullptr;
+                            father->rchild = nullptr;
+                            check = false;
+                            return father;
+                        }
+                    } else if(current->lchild==nullptr){
+                        tmp = current->rchild;
+                        current->data = tmp->data;
+                        current->lchild = tmp->lchild;
+                        current->rchild = tmp->rchild;
+                        delete tmp;
+                        tmp = nullptr;
+                        check = false;
+                        return this;
+                    } else if(current->rchild==nullptr){
+                        tmp = current->lchild;
+                        current->data = tmp->data;
+                        current->lchild = tmp->lchild;
+                        current->rchild = tmp->rchild;
+                        delete tmp;
+                        tmp = nullptr;
+                        check = false;
+                        return this;
+                    }
+                } else if(k<current->data) {
+                    father = current;
+                    current = current->lchild;
+                } else {
+                    father = current;
+                    current = current->rchild;
+                }
+            }while(check);
+        
+            return current;
+
+        }
+        bool isBst(){
+            
+        }
 };
